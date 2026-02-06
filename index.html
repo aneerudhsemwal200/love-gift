@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For You ❤️</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif}
+    body{
+      background:#000;
+      color:#fff;
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      overflow:hidden;
+    }
+    .screen{display:none;flex-direction:column;align-items:center;gap:20px}
+    .active{display:flex}
+
+    /* Gift */
+    .gift{
+      width:120px;height:120px;
+      background:#ff4d6d;
+      position:relative;
+      cursor:pointer;
+      animation:shake 1.2s infinite;
+    }
+    .gift:before,.gift:after{
+      content:'';
+      position:absolute;
+      background:#fff;
+    }
+    .gift:before{width:20px;height:120px;left:50%;transform:translateX(-50%)}
+    .gift:after{height:20px;width:120px;top:50%;transform:translateY(-50%)}
+    @keyframes shake{
+      0%{transform:rotate(0deg)}
+      25%{transform:rotate(2deg)}
+      50%{transform:rotate(-2deg)}
+      75%{transform:rotate(2deg)}
+      100%{transform:rotate(0deg)}
+    }
+
+    /* Flowers */
+    .flowers{
+      font-size:28px;
+      animation:float 2s ease-in-out infinite;
+    }
+    @keyframes float{
+      0%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
+      100%{transform:translateY(0)}
+    }
+
+    /* Text typing */
+    .text{
+      font-size:20px;
+      max-width:90%;
+      line-height:1.6;
+      animation:fade 1.5s ease forwards;
+    }
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+
+    /* Buttons */
+    .btns{display:flex;gap:20px;margin-top:20px}
+    button{
+      padding:12px 24px;
+      font-size:18px;
+      border:none;
+      border-radius:25px;
+      cursor:pointer;
+    }
+    #yes{background:#ff4d6d;color:#fff}
+    #no{background:#444;color:#fff;position:relative}
+
+    /* Final */
+    .photo{
+      width:220px;
+      border-radius:20px;
+      box-shadow:0 0 20px rgba(255,77,109,0.6);
+    }
+    .note{
+      font-size:18px;
+      white-space:pre-line;
+      line-height:1.7;
+      margin-top:15px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Screen 1 -->
+  <div class="screen active" id="s1">
+    <div class="text">I have a small gift for you 🎁</div>
+    <div class="gift" onclick="openGift()"></div>
+    <div class="text">(Tap the gift)</div>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="s2">
+    <div class="flowers">🌸🌷🌹🌸🌷</div>
+    <div class="text">These flowers are for you ❤️</div>
+    <div class="text">And now… I have a question 👀</div>
+    <button onclick="goQuestion()">Next</button>
+  </div>
+
+  <!-- Screen 3 -->
+  <div class="screen" id="s3">
+    <div class="text">Do you love me? ❤️</div>
+    <div class="btns">
+      <button id="yes" onclick="goFinal()">YES</button>
+      <button id="no" onmouseover="moveNo()">NO</button>
+    </div>
+  </div>
+
+  <!-- Screen 4 -->
+  <div class="screen" id="s4">
+    <!-- 👇 YAHAN PHOTO CHANGE KARNA -->
+    <img src="gf.jpg" class="photo" alt="Her Photo"/>
+    <div class="note">
+You are my favorite part of every day.
+
+When I see you smile,
+everything feels right.
+When you are with me,
+the world feels complete.
+
+I don’t know about forever,
+but I know one thing for sure —
+I want you, always.
+
+I love you baby.
+I can’t live without you.
+Nandu ❤️
+    </div>
+  </div>
+
+<script>
+  function openGift(){
+    s1.classList.remove('active');
+    s2.classList.add('active');
+  }
+  function goQuestion(){
+    s2.classList.remove('active');
+    s3.classList.add('active');
+  }
+  function moveNo(){
+    const x=Math.random()*200-100;
+    const y=Math.random()*200-100;
+    no.style.transform=`translate(${x}px,${y}px)`;
+  }
+  function goFinal(){
+    s3.classList.remove('active');
+    s4.classList.add('active');
+  }
+</script>
+</body>
+</html>
